@@ -1,0 +1,119 @@
+.WebRtc-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.WebRtc-back {
+  width: 50%;
+  margin: 10px;
+  background-color: #ffffff00;
+  border: 3px solid #350650;
+  border-radius: 40px;
+  line-height: 2.5;
+  color: white;
+  letter-spacing: 1em;
+  text-transform: uppercase;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Sacramento');
+
+.WebRtc-head { 
+  z-index: 1;
+  color: #ffffff;
+  text-align: center;
+  font-size: 1.5em; 
+  font-family: 'Sacramento', cursive;
+  letter-spacing: -1px;
+}
+
+.WebRtc-back:hover {
+  background-color: rgb(255, 0, 0);
+  color: black;
+  text-decoration: none;
+}
+
+.WebRtc-back:focus {
+  outline: none;
+}
+
+.WebRtc {
+  display: flexbox;
+  justify-content: center;
+}
+
+.WebRtc-query {
+  width: 100%
+}
+
+.WebRtc-request {
+  width: 100%
+}
+
+.WebRtc-peers {
+  width: 100%  
+}
+
+.WebRtc-loading-parent {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.WebRtc-loading{
+	position:relative;
+  display:flex;
+}
+.WebRtc-loading span{
+	width:10px;
+	height:10px;
+	border-radius:50%;
+  margin:20px;
+	animation:Loading 1.6s ease-in-out infinite;
+	transform-style:preserve-3d;
+	transform-origin:center;
+}
+.WebRtc-loading span:first-of-type{
+	background-color:#eb3b5a;
+	animation-delay:0s;
+	box-shadow:0px 0px 10px #eb3b5a;
+}
+.WebRtc-loading span:nth-of-type(2){
+	background-color:#2d98da;
+	animation-delay:.2s;
+	box-shadow:0px 0px 10px #2d98da;
+}
+.WebRtc-loading span:nth-of-type(3){
+	background-color:#f7b731;
+	animation-delay:.4s;
+	box-shadow:0px 0px 10px #f7b731;
+}
+.WebRtc-loading span:nth-of-type(4){
+	background-color:#218c74;
+	animation-delay:.6s;
+	box-shadow:0px 0px 10px #218c74;
+}
+.WebRtc-loading span:nth-of-type(5){
+	background-color:#474787;
+	animation-delay:.8s;
+	box-shadow:0px 0px 10px #474787;
+}
+.WebRtc-loading span:last-of-type{
+	background-color:#fa8231;
+	animation-delay:1s;
+	box-shadow:0px 0px 10px #fa8231;
+}
+
+@keyframes Loading{
+	
+	0%, 40%, 100%{
+		transform:scale(1);	
+	}
+	20%{
+		transform:scale(5);	
+	}
+
+}

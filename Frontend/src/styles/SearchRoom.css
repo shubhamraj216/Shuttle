@@ -1,0 +1,15 @@
+.SearchRoom {
+  line-height: 2;
+}
+
+.SearchRoom-input {
+  width: 60%;
+  text-align: center;
+  margin-top: 0.65em;
+  background-color: #350650;
+  color: white;
+}
+
+.SearchRoom-input:focus {
+  outline: none;
+}

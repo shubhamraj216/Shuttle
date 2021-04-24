@@ -1,0 +1,36 @@
+.Form {
+  line-height: 2;
+  /* text-align: center; */
+  background-color: #ffffff00;
+}
+
+.Form-input {
+  width: 60%;
+  margin: 10px;
+  text-align: center;
+  background-color: #350650;
+  color: white;
+}
+
+.Form-input:focus {
+  outline: none;
+}
+
+.Form-button {
+  width: 30%;
+  margin: 10px;
+  color: white;
+  background-color: #ffffff00;
+  border: 3px solid #350650;
+  border-radius: 40px;
+  line-height: 2.5;
+}
+
+.Form-button:hover {
+  color:#000000;
+  background-color: #d5c4d886;
+}
+
+.Form-button:focus {
+  outline: none;
+}

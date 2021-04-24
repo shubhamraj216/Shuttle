@@ -1,0 +1,56 @@
+.Crawl-sub {
+    color: white;
+}
+
+.Crawl-sub:hover {
+    color: #350650;
+    outline: none
+}
+
+.Crawl-nav {
+    justify-content: space-around;
+}
+
+.Crawl-nav li div {
+    cursor: pointer;
+}
+
+.Crawl-active {
+    background: white;
+    color: #350650
+}
+
+.CT-button {
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    color: #ffffff;
+    background: #ffffff00
+}
+
+.CT-button:hover {
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    color: rgb(255, 255, 255);
+    background: #701ca1d8
+}
+
+.enabled {
+    color: rgb(255, 255, 255);
+    background: #701ca1d8;
+}
+
+#CT-done {
+    color: white;
+    background: #7afb02;
+    border-radius: 5em;
+    box-shadow: 2px 5px 0px rgb(21, 58, 16);
+    outline: none
+}
+
+#CT-done:hover {
+    color: rgb(149, 241, 149);
+    background: rgb(44, 85, 3);
+    border-radius: 5em;
+}

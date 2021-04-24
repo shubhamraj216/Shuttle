@@ -1,0 +1,118 @@
+.Home {
+  display: flexbox;
+  justify-content: center;
+  margin-top: 1%;
+}
+
+.Home-room {
+  width: 100%;
+  line-height: 3;
+  height: 10%;
+  color: white;
+  background-color: #ffffff00;
+  border: 3px solid #350650;
+  /* margin: 1px; */
+  border-radius: 40px;
+}
+
+.Home-room:hover {
+  color: #000;
+  background-color: #d5c4d886;
+  text-decoration: none;
+}
+
+.Home-room-extra {
+  width: 100%;
+  line-height: 3;
+  height: 10%;
+  color: white;
+  border: 10px solid #111111;
+  border-radius: 40px;
+}
+
+.Home-refresh {
+  width: 20%;
+  margin: 10px;
+  color: white;
+  background-color: #ffffff00;
+  border: 3px solid #350650;
+  border-radius: 40px;
+  line-height: 2.5;
+}
+
+.Home-refresh:hover {
+  color: #000000;
+  background-color: #d5c4d886;
+}
+
+.Home-refresh:focus {
+  outline: none;
+}
+
+.Home-fa {
+  color: whitesmoke;
+  margin-right: 10px;
+}
+
+.Home-Box-parent {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Home-Box {
+  position: relative;
+  display: flex;
+}
+.Home-Box span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 20px;
+  animation: Loading 1.6s ease-in-out infinite;
+  transform-style: preserve-3d;
+  transform-origin: center;
+}
+.Home-Box span:first-of-type {
+  background-color: #eb3b5a;
+  animation-delay: 0s;
+  box-shadow: 0px 0px 10px #eb3b5a;
+}
+.Home-Box span:nth-of-type(2) {
+  background-color: #2d98da;
+  animation-delay: 0.2s;
+  box-shadow: 0px 0px 10px #2d98da;
+}
+.Home-Box span:nth-of-type(3) {
+  background-color: #f7b731;
+  animation-delay: 0.4s;
+  box-shadow: 0px 0px 10px #f7b731;
+}
+.Home-Box span:nth-of-type(4) {
+  background-color: #218c74;
+  animation-delay: 0.6s;
+  box-shadow: 0px 0px 10px #218c74;
+}
+.Home-Box span:nth-of-type(5) {
+  background-color: #474787;
+  animation-delay: 0.8s;
+  box-shadow: 0px 0px 10px #474787;
+}
+.Home-Box span:last-of-type {
+  background-color: #fa8231;
+  animation-delay: 1s;
+  box-shadow: 0px 0px 10px #fa8231;
+}
+
+@keyframes Loading {
+  0%,
+  40%,
+  100% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(5);
+  }
+}
