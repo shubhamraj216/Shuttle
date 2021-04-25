@@ -577,7 +577,12 @@ class WebRtc extends Component {
                 detached: true,
                 stdio: [null, null, null, 'ipc']
               };
-              let child_process_obj = spawn(`./Crawler`, [`${query}`, "1000"], options);
+              let child_process_obj;
+              if (window.navigator.platform.includes("Linux") !== null) {
+                child_process_obj = spawn(`./Crawler`, [`${query}`, "1000"], options);
+              } else if (window.navigator.platform.includes("Win") !== null) {
+                child_process_obj = spawn(`./Crawler.exe`, [`${query}`, "1000"], options);
+              }
               console.log(`Launched child process: PID: ${child_process_obj.pid}`);
               child_process_obj.on('exit', function (code, signal) {
                 console.log('child process exited with ' +

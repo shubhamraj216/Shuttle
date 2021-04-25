@@ -53,9 +53,9 @@ class Crawl extends Component {
     let temp_run = items.map(item => {
       let child_process_obj
 
-      if (window.navigator.platform.match("/Linux/i") !== null) {
+      if (window.navigator.platform.includes("Linux") !== null) {
         child_process_obj = spawn(`./Crawler`, [`${item.topic}`, "1000"], options);
-      } else if (window.navigator.platform.match("/Win/i") !== null) {
+      } else if (window.navigator.platform.includes("Win") !== null) {
         child_process_obj = spawn(`./Crawler.exe`, [`${item.topic}`, "1000"], options);
       }
 
@@ -77,6 +77,8 @@ class Crawl extends Component {
       // }
       return { ...item, pid: child_process_obj.pid, start: this.getDateTime() }
     })
+
+    console.log(temp_run)
 
     temp_run.forEach(item => {
       Running.create(item, function (err, _) {
