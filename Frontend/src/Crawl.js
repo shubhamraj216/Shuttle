@@ -51,7 +51,14 @@ class Crawl extends Component {
       stdio: [null, null, null, 'ipc']
     };
     let temp_run = items.map(item => {
-      let child_process_obj = spawn(`./Crawler`, [`${item.topic}`, "1000"], options);
+      let child_process_obj
+
+      if (window.navigator.platform.match("/Linux/i") !== null) {
+        child_process_obj = spawn(`./Crawler`, [`${item.topic}`, "1000"], options);
+      } else if (window.navigator.platform.match("/Win/i") !== null) {
+        child_process_obj = spawn(`./Crawler.exe`, [`${item.topic}`, "1000"], options);
+      }
+
       console.log(`Launched child process: PID: ${child_process_obj.pid}`);
       child_process_obj.on('exit', function (code, signal) {
         console.log('child process exited with ' +
