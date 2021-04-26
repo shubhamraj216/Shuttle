@@ -53,9 +53,9 @@ class Crawl extends Component {
     let temp_run = items.map(item => {
       let child_process_obj
 
-      if (window.navigator.platform.includes("Linux") !== null) {
+      if (window.navigator.platform.includes("Linux")) {
         child_process_obj = spawn(`./Crawler`, [`${item.topic}`, "1000"], options);
-      } else if (window.navigator.platform.includes("Win") !== null) {
+      } else if (window.navigator.platform.includes("Win")) {
         child_process_obj = spawn(`./Crawler.exe`, [`${item.topic}`, "1000"], options);
       }
 

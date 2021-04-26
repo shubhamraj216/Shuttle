@@ -8,7 +8,7 @@ import Form from './Form';
 import { Link } from 'react-router-dom';
 import './styles/WebRtc.css';
 import { mongoSearch, compare } from './MongoHelp';
-const { Running } = require('./Schema');
+const { Running, Stopped } = require('./Schema');
 var MongoClient = window.require('mongodb').MongoClient;
 const spawn = window.require('child_process').spawn;
 var url = "mongodb://localhost:27017/";
@@ -45,7 +45,7 @@ let urls = ["https://google.com", "https://ebay.com",
 let room_coord = false;
 let child = []
 let max_child = 100000000
-let ct = 0
+let ct = 0 // a flag to set only one parent for a child
 let coord = ""
 
 class WebRtc extends Component {
@@ -405,11 +405,11 @@ class WebRtc extends Component {
     let len = data.length;
     let n = len / CHUNK_LEN | 0;
 
-    if (!sendChannel) {
-      alert('Connection has not been initiated. Get two peers in the same room first');
-      this.logError('Connection has not been initiated. Get two peers in the same room first');
-      return;
-    }
+    // if (!sendChannel) {
+    //   alert('Connection has not been initiated. Get two peers in the same room first');
+    //   this.logError('Connection has not been initiated. Get two peers in the same room first');
+    //   return;
+    // }
 
     for (let key in sendChannel) {
       if (sendChannel.hasOwnProperty(key) && sendChannel[key].readyState === 'open') {
@@ -548,6 +548,24 @@ class WebRtc extends Component {
     return `${x[2]} ${x[1]} ${x[3]} ${x[4]}`;
   }
 
+  handleKillProcess  = async (obj) => {
+    let killed;
+
+    killed = await { ...obj, stop: this.getDateTime() }
+
+    console.log(killed)
+    await Running.findOneAndRemove({ pid: killed.pid }, (err) => {
+      if (err) {
+        console.log(err)
+      }
+    })
+
+    await Stopped.create(killed, function (err, _) {
+      console.log(killed)
+      if (err) console.log(err)
+    })
+  }
+
   renderMessage = async (msg) => {
     let obj = JSON.parse(msg);
     let sender1 = obj.sender1,
@@ -578,9 +596,9 @@ class WebRtc extends Component {
                 stdio: [null, null, null, 'ipc']
               };
               let child_process_obj;
-              if (window.navigator.platform.includes("Linux") !== null) {
+              if (window.navigator.platform.includes("Linux")) {
                 child_process_obj = spawn(`./Crawler`, [`${query}`, "1000"], options);
-              } else if (window.navigator.platform.includes("Win") !== null) {
+              } else if (window.navigator.platform.includes("Win")) {
                 child_process_obj = spawn(`./Crawler.exe`, [`${query}`, "1000"], options);
               }
               console.log(`Launched child process: PID: ${child_process_obj.pid}`);
@@ -595,9 +613,9 @@ class WebRtc extends Component {
               child_process_obj.stderr.on('data', (data) => {
                 console.error(`child stderr:\n${data}`);
               });
-              child_process_obj.on('close', () => this.handleKillProcess(child_process_obj.pid, false));
-
               let Robj = { key: uuid(), topic: query.charAt(0).toUpperCase() + query.slice(1), pid: child_process_obj.pid, start: this.getDateTime() }
+              child_process_obj.on('close', () => this.handleKillProcess(Robj, false));
+
 
               Running.create(Robj, function (err, _) {
                 if (err) { console.log(err) }
@@ -709,6 +727,7 @@ class WebRtc extends Component {
           sendChannel[key].send(`-${myID}`);
         }
       }
+      ct = 0
     } else {
       socket.emit('message', { type: 'bye', from: myID });
     }
